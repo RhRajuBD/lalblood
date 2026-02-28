@@ -133,6 +133,25 @@ border-radius:10px;
 cursor:pointer;
 }
 
+/* contact section */
+
+.contact{
+background:white;
+padding:30px;
+text-align:center;
+}
+
+.contact-icons img{
+width:50px;
+margin:10px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.contact-icons img:hover{
+transform:scale(1.2);
+}
+
 </style>
 
 </head>
@@ -149,7 +168,7 @@ Bengali Softwares App Store
 </div>
 
 
-<section class="apps" id="apps">
+<section class="apps">
 
 
 <!-- App 1 -->
@@ -162,7 +181,7 @@ Bengali Softwares App Store
 <div class="btn details"
 onclick="showDetails(
 'Lal Blood',
-'Find blood donors easily. Fast, secure and smart app.',
+'Find blood donors easily. Fast and secure app.',
 'myapp.apk',
 ['screenshot1.png','screenshot2.png','screenshot3.png']
 )">
@@ -179,26 +198,51 @@ Download
 <!-- App 2 -->
 <div class="app" data-name="Love Calculator">
 
-<img src="icon.png">
+<img src="love.png">
 
 <h3>Love Calculator</h3>
 
 <div class="btn details"
 onclick="showDetails(
 'Love Calculator',
-'Check your love percentage with fun.',
-'app2.apk',
+'Check love percentage easily.',
+'love.apk',
 ['love1.png','love2.png','love3.png']
 )">
 Details
 </div>
 
-<a href="app2.apk" class="btn download">
+<a href="love.apk" class="btn download">
 Download
 </a>
 
 </div>
 
+
+</section>
+
+
+<!-- Contact Section -->
+
+<section class="contact">
+
+<h2>Contact Us</h2>
+
+<div class="contact-icons">
+
+<a href="https://facebook.com/yourpage" target="_blank">
+<img src="facebook.png">
+</a>
+
+<a href="https://wa.me/8801581730282" target="_blank">
+<img src="whatsapp.png">
+</a>
+
+<a href="mailto:rhraju37@gmail.com">
+<img src="gmail.png">
+</a>
+
+</div>
 
 </section>
 
@@ -255,7 +299,6 @@ screens.innerHTML+=`<img src="${img}">`;
 function closePopup(){
 document.getElementById("popup").style.display="none";
 }
-
 
 
 function searchApp(value){
