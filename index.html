@@ -4,89 +4,279 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lal Blood Official Website</title>
-
-<link rel="stylesheet" href="style.css">
+<title>Lal Blood App Store</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+background:#f1f3f6;
+}
+
+/* header */
+
+header{
+background:#00c853;
+color:white;
+padding:15px;
+font-size:22px;
+font-weight:bold;
+text-align:center;
+}
+
+/* search */
+
+.search-box{
+padding:15px;
+text-align:center;
+background:white;
+}
+
+.search-box input{
+width:90%;
+max-width:400px;
+padding:12px;
+border-radius:25px;
+border:1px solid #ccc;
+font-size:16px;
+}
+
+/* app grid */
+
+.apps{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+padding:20px;
+}
+
+.app{
+background:white;
+width:200px;
+padding:15px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+text-align:center;
+transition:0.3s;
+}
+
+.app:hover{
+transform:translateY(-5px);
+}
+
+.app img{
+width:80px;
+border-radius:20px;
+}
+
+.app h3{
+margin:10px 0;
+font-size:18px;
+}
+
+.btn{
+display:block;
+padding:10px;
+margin:5px;
+border-radius:20px;
+text-decoration:none;
+color:white;
+cursor:pointer;
+}
+
+.download{
+background:#00c853;
+}
+
+.details{
+background:#2962ff;
+}
+
+/* popup */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+}
+
+.popup-box{
+background:white;
+padding:20px;
+border-radius:15px;
+max-width:400px;
+text-align:center;
+}
+
+.popup-box img{
+width:70px;
+margin:5px;
+border-radius:10px;
+}
+
+.close{
+background:red;
+color:white;
+padding:10px;
+margin-top:10px;
+border-radius:10px;
+cursor:pointer;
+}
+
+</style>
 
 </head>
 <body>
 
+
 <header>
-
-<div class="logo">
-<img src="icon.png">
-<span>Blood</span>
-</div>
-
-<a href="myapp.apk" class="download-btn">
-Download
-</a>
-
+Lal Blood App Store
 </header>
 
 
-<section class="hero">
+<div class="search-box">
+<input type="text" placeholder="Search app..." onkeyup="searchApp(this.value)">
+</div>
 
-<img src="icon.png" class="hero-icon">
 
-<h1>Lal Blood</h1>
+<section class="apps" id="apps">
 
-<p>Fast, Secure and Smart Android App</p>
 
-<a href="myapp.apk" class="main-download">
-Download Now
+<!-- App 1 -->
+<div class="app" data-name="Lal Blood">
+
+<img src="icon.png">
+
+<h3>Lal Blood</h3>
+
+<div class="btn details"
+onclick="showDetails(
+'Lal Blood',
+'Find blood donors easily. Fast, secure and smart app.',
+'myapp.apk',
+['screenshot1.png','screenshot2.png','screenshot3.png']
+)">
+Details
+</div>
+
+<a href="myapp.apk" class="btn download">
+Download
 </a>
 
-</section>
-
-
-<section class="features">
-
-<h2>Features</h2>
-
-<div class="feature-box">
-
-<div class="feature">
-<h3>Fast</h3>
-<p>Super fast performance</p>
 </div>
 
-<div class="feature">
-<h3>Secure</h3>
-<p>Safe and secure system</p>
+
+<!-- App 2 -->
+<div class="app" data-name="Love Calculator">
+
+<img src="app2.png">
+
+<h3>Love Calculator</h3>
+
+<div class="btn details"
+onclick="showDetails(
+'Love Calculator',
+'Check your love percentage with fun.',
+'app2.apk',
+['ss1.png','ss2.png','ss3.png']
+)">
+Details
 </div>
 
-<div class="feature">
-<h3>Easy</h3>
-<p>Easy to use interface</p>
-</div>
+<a href="app2.apk" class="btn download">
+Download
+</a>
 
 </div>
 
-</section>
-
-
-<section class="screenshots">
-
-<h2>Screenshots</h2>
-
-<img src="screenshot1.png">
-<img src="screenshot2.png">
-<img src="screenshot3.png">
 
 </section>
 
 
-<footer>
+<!-- popup -->
 
-<p>© 2026 Lal Blood. All rights reserved.</p>
+<div class="popup" id="popup">
 
-</footer>
+<div class="popup-box">
+
+<h2 id="name"></h2>
+
+<p id="desc"></p>
+
+<div id="screens"></div>
+
+<a id="download" class="btn download">
+Download
+</a>
+
+<div class="close" onclick="closePopup()">
+Close
+</div>
+
+</div>
+
+</div>
 
 
-<script src="script.js"></script>
+
+<script>
+
+function showDetails(name, desc, apk, screenshots){
+
+document.getElementById("popup").style.display="flex";
+
+document.getElementById("name").innerText=name;
+
+document.getElementById("desc").innerText=desc;
+
+document.getElementById("download").href=apk;
+
+let screens=document.getElementById("screens");
+
+screens.innerHTML="";
+
+screenshots.forEach(img=>{
+screens.innerHTML+=`<img src="${img}">`;
+});
+
+}
+
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+
+
+function searchApp(value){
+
+let apps=document.querySelectorAll(".app");
+
+apps.forEach(app=>{
+
+let name=app.getAttribute("data-name").toLowerCase();
+
+if(name.includes(value.toLowerCase()))
+app.style.display="block";
+else
+app.style.display="none";
+
+});
+
+}
+
+</script>
+
 
 </body>
 </html>
